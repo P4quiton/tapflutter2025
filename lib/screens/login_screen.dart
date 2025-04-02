@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tap2025/screens/dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -73,6 +74,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: (){
                   isLoading = true;
                   setState(() { });
+
+                  Future.delayed(const Duration(seconds: 4)).then((value) {
+                    Navigator.pushNamed(context, '/dash');
+                  },);
+
+                  /*Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => const DashboardScreen(),
+                    )
+                  );*/
                 },
                 child: Lottie.asset('assets/boton.json', width: 220)
               )
