@@ -31,7 +31,8 @@ class PopularModel {
 
   factory PopularModel.fromMap(Map<String,dynamic> movie){
     return PopularModel(
-      backdropPath: movie['backdrop_path'] ?? '', 
+      backdropPath: 'https://image.tmdb.org/t/p/w500/${movie['backdrop_path']}' 
+      ?? 'https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-5529.jpg', 
       id: movie['id'], 
       originalLanguage: movie['original_language'], 
       originalTitle: movie['original_title'], 
