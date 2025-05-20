@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
+import 'package:tap2025/models/user_model.dart';
 
 class UserDatabase {
   static const NAMEDB = 'USERDB';
@@ -45,7 +46,13 @@ class UserDatabase {
       whereArgs: [data['idUser']]
     );
   }
-  DELETE(){}
-  SELECT(){}
-  
+  Future<int> DELETE(int idUser) async {
+    final con = await database;
+    return con!.delete('tblUsers',where: 'idUser = ?', whereArgs: [idUser]);
+  }
+  Future<List<UserModel>> SELECT() async {
+    final con = await database;
+    final res = await con!.query('tblUsers');
+    return res.map((user) => UserModel.fromMap(user)).toList();
+  }
 }
